@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="{% static 'register.css' %}" />
+</head>
+<style>
+     
+</style>
+<body></br></br></br></br></br>
+<div align="center">
+  <div align="center" class="border">
+    {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {{messages}}
+          </div>
+          {% endif %}
+     <div class="header">
+        <h1 class="word">Register</h1>
+     </div>
+     </br></br></br>
+    <h2 class="word">
+        <form  method="post">
+            {% csrf_token %}
+            <input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/></br></br>
+            <input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/></br></br>
+            <input id="email" name="email" type="text" placeholder="Enter Your Email ID" class="textbox"/></br></br>
+            <input type="submit" class="btn" value="Sign Up"></br>
+        </form>
+    </h2>
+    <p class="bottom">Already have an account?  <a class="bottom" href="{% url 'login' %}"> Sign In here</a></p>
+  </div>
+</div>
+</body>
+</html>
