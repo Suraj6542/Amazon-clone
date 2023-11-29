@@ -89,3 +89,6 @@ def remove_from_cart(request, product_id):
 
     messages.success(request, 'Product quantity has been updated.')
     return redirect('view_cart')
+
+def place_order(request):
+    return render(request, 'confirmation.html')
