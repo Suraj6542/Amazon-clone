@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, login, home, logout_view, add_to_cart, view_cart
+from .views import register, login, home, logout_view, add_to_cart, view_cart, remove_from_cart
 from django.contrib import admin
 from saasapp import views
 from django.conf import settings
@@ -11,6 +11,8 @@ urlpatterns = [
     path('logout/', logout_view, name='logout_view'),
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('cart/', view_cart, name='view_cart'),
+    path('remove_from_cart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
+
     # path('logout_view',logout_view, name="logout_view"),
 
     #  path('admin/', admin.site.urls),

@@ -184,7 +184,10 @@
                             <p>Price: ${{ cart_item.product.price }}</p>
                             <p>Quantity: {{ cart_item.quantity }}</p>
                             <p>TotalPrice: {{cart_item.total_price}}</p>
-                            <button>Place order</button>
+                            <button>Place order</button><br><br>
+                            <a href="{% url 'remove_from_cart' product_id=cart_item.product.product_id %}">
+                                <button>Remove from Cart</button>
+                            </a>
                         </div>
                     </div>
                 </center>

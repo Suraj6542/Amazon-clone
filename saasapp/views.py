@@ -38,19 +38,19 @@ def login(request):
     return render (request,'login.html')
 
 
-# @login_required()
+# @login_required(login_url='login')
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
-# @login_required(login_url='/login/')
+# @login_required(login_url='login')
 def home(request):
     
     products = Product.objects.all()
     return render(request, 'home.html', {'products': products})
 
-# @login_required()
+# @login_required(login_url='login')
 def add_to_cart(request, product_id):
 
     
@@ -77,3 +77,15 @@ def view_cart(request):
     # total_price =[sum(item.price)  for item in cart_items]
 
     return render(request, 'cart.html', {'cart_items': cart_items})
+
+def remove_from_cart(request, product_id):
+    user_id = request.session.get('user_id')
+    cart_item = CartItem.objects.get(product=Product.objects.get(product_id=product_id), user_id=request.session.get('user_id'))
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+    else:
+        cart_item.delete()
+
+    messages.success(request, 'Product quantity has been updated.')
+    return redirect('view_cart')
